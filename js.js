@@ -65,7 +65,7 @@ class Produto {
 
     listaTabela() { 
         let tbody = document.getElementById('tbody')
-        tbody.innerText = ''; 
+        tbody.innerText = '';
 
         for (let i = 0; i < this.arrayProdutos.length; i++) {
             let tr = tbody.insertRow();
@@ -87,10 +87,27 @@ class Produto {
 
             let imgDelet = document.createElement('img');
             imgDelet.src = 'imgs/delet.svg'
+            imgDelet.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id + ")");
 
             td_acoes.appendChild(imgEdit);
             td_acoes.appendChild(imgDelet)
+
+            console.log(this.arrayProdutos)
         }
+    }
+
+    deletar(id) {
+
+        let tbody = document.getElementById('tbody');
+
+        for(let i = 0; i < this.arrayProdutos.length; i++) {
+            if (this.arrayProdutos[i].id == id) {
+                this.arrayProdutos.splice('i', '1')
+                tbody.deleteRow(i);
+            }
+        }
+
+        console.log(this.arrayProdutos)
     }
 
 }
